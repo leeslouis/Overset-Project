@@ -23,4 +23,4 @@ cp -r 0_org 0
 checkMesh |  tee log.checkMesh
 setFields | tee log.setFields
 renumberMesh -overwrite
-overInterDyMFoam
+overInterDyMFoam | tee log.overInterDyMFoam
