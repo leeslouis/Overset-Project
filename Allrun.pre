@@ -1,0 +1,27 @@
+cd aeroFoil_snappyHexMesh
+blockMesh
+snappyHexMesh -overwrite
+
+cd ..
+cd aeroFoil_overset
+extrudeMesh
+createPatch -overwrite
+
+cd ..
+cd background_snappyHexMesh
+blockMesh
+snappyHexMesh -overwrite
+cd ..
+cd background_overset
+
+extrudeMesh
+createPatch -overwrite
+mergeMeshes . ../aeroFoil_overset -overwrite
+
+topoSet
+source ${WM_PROJECT_DIR}/bin/tools/RunFunctions
+
+restore0Dir
+setFields
+decomposePar -cellDist
+mpirun -oversubscribe -np 16 overSimpleFoam -parallel
