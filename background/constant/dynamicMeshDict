@@ -1,0 +1,91 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  plus-overset                          |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      dynamicMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+motionSolverLibs    (sixDoFRigidBodyMotion);
+
+dynamicFvMesh       dynamicOversetFvMesh;
+
+solver          sixDoFRigidBodyMotion;
+sixDoFRigidBodyMotionCoeffs
+{
+    patches         (wing);
+    innerDistance   0.1;
+    outerDistance   0.3;
+
+    mass            0.0277;
+    centreOfMass    (-0.004956 -0.00351 0.008337);
+    momentOfInertia (0.013364978 0.098424885 0.085904587);
+    // angularMomentum (0.735 5.413 4.725);
+    angularMomentum (0 0 0);
+    g               (0 -9.81 0);
+    rho         rhoInf;
+    rhoInf          1;
+    report          on;
+    // omega           (0 55 0);       //units of rad/s
+    report          on;
+    accelerationRelaxation 0.6;
+    accelerationDamping    0.9;
+
+    solver
+    {
+        type Newmark;
+    }
+
+    constraints
+    {
+
+        
+        // fixedPoint
+        // {
+        //     sixDoFRigidBodyMotionConstraint point;
+        //     centreOfRotation (-0.004956 -0.00351 0.008337);
+        // }
+        
+
+        // fixedLine
+        // {
+        //     sixDoFRigidBodyMotionConstraint line;
+        //     //centreOfRotation (0.5 0.45 0.1);
+        //     direction (0 0 1);
+        // }
+
+        
+        // fixedAxis
+        // {
+        //     sixDoFRigidBodyMotionConstraint axis;
+        //     axis (0 1 0);
+        // }
+        
+    }
+    // prescribedRotation
+    // {
+    //     // referenceOrientation	Orientation	no
+    //     axis	(0 1 0)
+    //     omega	55.0
+    // }
+
+}
+
+
+// IGNORE EVERYTHING AFTER THIS
+// motionSolverLibs    (sixDoFRigidBodyMotion fvMotionSolvers);
+
+// dynamicFvMesh       dynamicOversetFvMesh;
+
+// solver              displacementLaplacian
+
+// diffusivity quadratic inverseDistance (wing);
+
+// ************************************************************************* //
