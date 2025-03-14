@@ -77,6 +77,9 @@ sixDoFRigidBodyMotionCoeffs
     // }
 
 }
+
+
+// IGNORE EVERYTHING AFTER THIS
 // motionSolverLibs    (sixDoFRigidBodyMotion fvMotionSolvers);
 
 // dynamicFvMesh       dynamicOversetFvMesh;
