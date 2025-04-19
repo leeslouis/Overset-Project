@@ -31,7 +31,7 @@ deltaT          0.0001;
 
 // writeControl    adjustableRunTime;
 
-writeInterval   1;
+writeInterval   3;
 
 purgeWrite      0;
 
@@ -53,4 +53,25 @@ functions
 {
     #include "forces"
     #include "forceCoeffs"
-};
+
+    sixDoFRigidBodyState
+    {
+        patches ("wing");
+        type            sixDoFRigidBodyState;
+        libs            ("libsixDoFRigidBodyState.so");
+
+        // Optional, only needed if your solver name is different
+        motionSolver    sixDoFRigidBodyMotion;
+
+        // Output frequency control
+        writeControl    timeStep;
+        writeInterval   1;
+
+        // Output formats
+        log             yes;
+        csv             yes;
+
+        // Output location
+        fileName        "postProcessing/sixDoFRigidBodyState";
+    }
+}
