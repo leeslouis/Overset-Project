@@ -21,13 +21,14 @@ solver          sixDoFRigidBodyMotion;
 sixDoFRigidBodyMotionCoeffs
 {
     patches         (wing);
-    innerDistance   1;
-    outerDistance   1.1;
+    innerDistance   100;
+    outerDistance   101;
+
 
     mass            0.0277;
     centreOfMass    (-0.004956 -0.00351 0.008337);
     momentOfInertia (0.013364978 0.098424885 0.085904587);
-    angularMomentum (0.735 5.413 4.725);
+    angularMomentum (-0.000239 -5.418 -0.000883);
     //angularMomentum (0 0 0);
 
     g               (0 -9.81 0);
@@ -36,8 +37,6 @@ sixDoFRigidBodyMotionCoeffs
     report          on;
     // omega           55.0;       //units of rad/s
     report          on;
-    //accelerationRelaxation 0.6;
-    //accelerationDamping    0.9;
 
     solver
     {
@@ -50,6 +49,22 @@ sixDoFRigidBodyMotionCoeffs
 
 
 }
+// dynamicFvMesh dynamicMotionSolverFvMesh;
 
+// motionSolverLibs    (sixDoFRigidBodyMotion fvMotionSolvers);
+// dynamicFvMesh       dynamicOversetFvMesh;
+
+// // motionSolverLibs
+// // (
+// //     "libsixDoFRigidBodyMotion.so"
+// //     "libfvMotionSolvers.so" 
+// // );
+
+// solver displacementLaplacian; //Change solver
+
+// displacementLaplacianCoeffs
+// {
+//     diffusivity uniform (wing);
+// }
 
 // ************************************************************************* //
