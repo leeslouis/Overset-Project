@@ -53,25 +53,4 @@ functions
 {
     #include "forces"
     #include "forceCoeffs"
-
-    sixDoFRigidBodyState
-    {
-        patches ("wing");
-        type            sixDoFRigidBodyState;
-        libs            ("libsixDoFRigidBodyState.so");
-
-        // Optional, only needed if your solver name is different
-        motionSolver    sixDoFRigidBodyMotion;
-
-        // Output frequency control
-        writeControl    timeStep;
-        writeInterval   1;
-
-        // Output formats
-        log             yes;
-        csv             yes;
-
-        // Output location
-        fileName        "postProcessing/sixDoFRigidBodyState";
-    }
 }
